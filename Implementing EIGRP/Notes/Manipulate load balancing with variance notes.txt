@@ -1,0 +1,35 @@
+EIGRP Unequal Cost Load Balancing – Caveats Explained
+
+There are two important caveats when using EIGRP variance.
+
+1. Only Feasible Successors Are Used
+EIGRP does not load-balance over every available path.
+A route must be a feasible successor to be considered.
+
+This means the neighbor’s reported distance must be lower than
+the current feasible distance of the best route.
+
+If a path does not meet this feasibility condition, EIGRP will
+not use it, even if the variance value allows it.
+This rule exists to prevent routing loops.
+
+2. Unequal Cost Load Balancing Is Not Equal
+When EIGRP performs unequal cost load balancing, traffic is not
+shared evenly.
+
+Traffic is distributed proportionally based on the metric of
+each path.
+The path with the lowest metric carries more traffic, while
+higher-metric paths carry less.
+
+Example:
+Best path metric = 10
+Second path metric = 20
+
+The best path will carry about twice as much traffic as the
+second path.
+
+Summary:
+Variance allows EIGRP to use multiple paths, but only safe
+(loop-free) paths are allowed, and traffic always favors the
+best path.

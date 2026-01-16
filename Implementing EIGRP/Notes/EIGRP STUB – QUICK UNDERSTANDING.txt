@@ -1,0 +1,37 @@
+EIGRP STUB 
+
+An EIGRP stub router is a leaf router. It sits at the edge of the network and does not provide paths to other routers. Nothing important exists behind it except its own local networks.
+
+When a route fails in EIGRP, routers send query messages asking neighbors if they know another path. If queries spread everywhere, convergence becomes slow.
+
+Without a stub configuration, a hub router will still send queries to a leaf router, even though that leaf router can never help. This wastes time and CPU.
+
+When you configure eigrp stub on a router, that router tells its neighbor:
+
+“I am a dead end. Do not send me queries for missing routes.”
+
+After this:
+
+- The hub router stops sending EIGRP queries to the stub router
+
+- Queries are contained closer to the failure
+
+- Convergence becomes faster
+
+A stub router only advertises:
+
+- Its directly connected networks
+
+- Summary routes (if configured)
+
+In this lab:
+
+- D1 is the stub router (edge device)
+
+- R1 is the hub router
+
+- When a route fails, queries stop at R1 and never reach D1
+
+ONE-LINE SUMMARY
+
+EIGRP stub prevents unnecessary EIGRP queries from being sent to edge routers, making the network converge faster.

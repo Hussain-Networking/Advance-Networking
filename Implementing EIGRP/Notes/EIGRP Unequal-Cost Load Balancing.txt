@@ -1,0 +1,39 @@
+EIGRP Unequal-Cost Load Balancing Explained 
+
+1. Default Behavior:
+EIGRP normally uses only equal-cost paths for load balancing. By default, it uses up to 4 equal-cost paths.
+
+2. What We Did:
+We changed the bandwidth on R2 interfaces to make one path worse. Now the two paths to 192.168.1.0/24 are not equal anymore.
+
+3. Why Only One Path Appeared:
+EIGRP only uses equal-cost paths unless we tell it otherwise. With default variance = 1, only the best path is used.
+
+4. Feasible Successors:
+A path can only be used if it is a feasible successor:
+- Its reported distance (RD) < best feasible distance (FD)
+- This ensures loop-free paths
+
+5. Variance:
+Variance allows EIGRP to use worse paths safely.
+- Formula: FD <= variance × best FD
+- If this is true and the path is a feasible successor, it becomes a usable path.
+
+6. Example:
+- Best FD = 2621440
+- Second path FD = 2785280, RD = 2129920
+- 2129920 < 2621440 ✅ (feasible successor)
+- Variance 2 → 2 × 2621440 = 5242880
+- 2785280 <= 5242880 ✅ (path used)
+
+7. Result:
+- Now R3 uses both paths
+- Traffic is shared proportionally based on metrics, not 50/50
+- Better path carries slightly more traffic
+
+8. Key Points:
+- Only feasible successors are used
+- Variance does not create loops
+- Unequal-cost load balancing uses metrics to decide traffic share
+
+This allows EIGRP to use multiple paths safely and efficiently, even if they are not equal.

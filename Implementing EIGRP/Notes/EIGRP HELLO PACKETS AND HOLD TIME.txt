@@ -1,0 +1,44 @@
+EIGRP HELLO PACKETS AND HOLD TIME
+
+Hello Packets:
+Hello packets are small EIGRP messages used to discover and maintain neighbors.
+They do NOT carry routing information.
+
+Purpose of hello packets:
+- Discover new EIGRP neighbors
+- Keep existing neighbor relationships alive
+- Verify that neighbors are reachable
+
+If hello packets stop arriving, the router assumes the neighbor may be down.
+
+Hello Interval:
+The hello interval is how often hello packets are sent.
+The default value depends on interface speed.
+
+Hold Time:
+Hold time is the maximum time a router will wait to receive a hello packet
+from a neighbor before declaring that neighbor dead.
+
+If no hello is received before the hold time expires:
+- The neighbor is removed
+- Routes learned from that neighbor are deleted
+- EIGRP recalculates routes (DUAL process runs)
+
+Relationship Between Hello and Hold Time:
+- Hello interval controls how often hellos are sent
+- Hold time controls how long a router waits
+- Hold time is usually 3 times the hello interval
+- Hold times do NOT need to match between neighbors
+
+Default Values:
+For links greater than T1 (1.544 Mbps):
+- Hello interval: 5 seconds
+- Hold time: 15 seconds
+
+For links T1 or slower:
+- Hello interval: 60 seconds
+- Hold time: 180 seconds
+
+Summary:
+Hello packets say "I am still here".
+Hold time is the deadline before EIGRP decides a neighbor is down.
