@@ -95,7 +95,6 @@ This repository is for educational purposes. Feel free to use and modify for per
 
 **Hussain Ali**  
 
-Email: hussainali.networking@gmail.com  
-GitHub: [Hussain-Networking](https://github.com/Hussain-Networking)  
-YouTube: [@Hussain.Networking](https://www.youtube.com/@Hussain.Networking)
+- [**Email**](mailto:hussainali.networking@gmail.com) 
+- [**YouTube**](https://www.youtube.com/@Hussain.Networking)
 
